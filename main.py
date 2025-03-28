@@ -5,7 +5,7 @@ import aiohttp
 URL = "https://raw.githubusercontent.com/avito-tech/python-trainee-assignment/main/matrix.txt"
 
 
-async def fetch_data(url):
+async def fetch_data(url: str) -> str | None:
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             if response.status == 200:
@@ -15,7 +15,7 @@ async def fetch_data(url):
                 return None
 
 
-def parse_matrix(data):
+def parse_matrix(data: str) -> list:
     matrix = []
     for line in data.split('\n'):
         if line.startswith('|'):
@@ -24,7 +24,7 @@ def parse_matrix(data):
     return matrix
 
 
-def get_list(matrix):
+def get_list(matrix : list) -> list:
     if not matrix or not matrix[0]:
         return []
 
